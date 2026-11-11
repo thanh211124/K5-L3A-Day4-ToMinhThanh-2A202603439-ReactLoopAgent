@@ -50,6 +50,13 @@ class ToolsTests(unittest.TestCase):
 
 
 class LoopTests(unittest.TestCase):
+    def test_system_prompt_discloses_incident_search_limit(self):
+        fake = FakeProvider([final()])
+        result = run_agent('Có incident nào trong năm 2025?', fake, StatusTools())
+        self.assertEqual(result['status'], 'completed')
+        system_prompt = fake.histories[0][0]['content']
+        self.assertIn('50 incident gần nhất', system_prompt)
+        self.assertIn('không suy ra không có incident cũ hơn', system_prompt)
     def test_tool_result_is_returned_with_id(self):
         fake = FakeProvider([tool_call('call-1', 'get_status', '{"provider":"github"}'), final()])
         result = run_agent('kiểm tra', fake, StatusTools())
