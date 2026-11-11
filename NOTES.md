@@ -1,4 +1,6 @@
 # Ghi chú phân tích · Day 04
+- Họ và tên : Tô Minh Thành  
+- MSSV : 2A202603439
 
 ## 1. Case được chọn
 
